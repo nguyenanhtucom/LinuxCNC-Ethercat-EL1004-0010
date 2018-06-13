@@ -66,7 +66,7 @@
     { lcecSlaveTypeEL1004_0010, LCEC_EL1004_0010_VID, LCEC_EL1004_0010_PID, LCEC_EL1004_0010_PDOS, lcec_el1004_0010_init},
      . . .
      
-  # Test
+  # Test halrun
   
   1. ethercat-conf.xml
    <masters>  
@@ -76,7 +76,8 @@
         <slave idx="2" type="EL1004-0010" name="D3"/>
     </master>
     </masters>
-   2. $ halrun
+   
+    $ halrun
     $ halcmd:
     loadrt trivkins
     loadrt motmod servo_period_nsec=1000000 num_joints=3
@@ -84,3 +85,8 @@
     loadrt lcec
     addf lcec.read-all servo-thread
     addf lcec.write-all servo-thread
+ 
+ # Test LinuxCNC
+    Run linuxcnc with file swm-fm45a.ini
+    $ linuxcnc swm-fm45a.ini 
+    Connect PIN 1 to 24v... check status buntton Enstop on GUI LinuxCNC
