@@ -67,18 +67,20 @@
      . . .
      
   # Test
+  
   1. ethercat-conf.xml
    <masters>  
-  <master idx="0" appTimePeriod="1000000" refClockSyncCycles="1000">
-    <slave idx="0" type="EK1100" name="D1"/>
-    <slave idx="1" type="EL2042" name="D2"/>
-    <slave idx="2" type="EL1004-0010" name="D3"/>
-  </master>
-</masters>
-$ halcmd:
-loadrt trivkins
-loadrt motmod servo_period_nsec=1000000 num_joints=3
-loadusr -W lcec_conf /home/nat/Desktop/ethercat-conf.xml
-loadrt lcec
-addf lcec.read-all servo-thread
-addf lcec.write-all servo-thread
+    <master idx="0" appTimePeriod="1000000" refClockSyncCycles="1000">
+        <slave idx="0" type="EK1100" name="D1"/>
+        <slave idx="1" type="EL2042" name="D2"/>
+        <slave idx="2" type="EL1004-0010" name="D3"/>
+    </master>
+    </masters>
+   2. $ halrun
+    $ halcmd:
+    loadrt trivkins
+    loadrt motmod servo_period_nsec=1000000 num_joints=3
+    loadusr -W lcec_conf /home/nat/Desktop/ethercat-conf.xml
+    loadrt lcec
+    addf lcec.read-all servo-thread
+    addf lcec.write-all servo-thread
